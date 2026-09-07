@@ -1,0 +1,9 @@
+# App
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# Database
+DATABASE_URL=""
+
+# Better Auth
+BETTER_AUTH_SECRET=your_generated_secret_here
+BETTER_AUTH_URL=http://localhost:3000
