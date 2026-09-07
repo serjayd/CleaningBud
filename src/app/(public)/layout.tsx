@@ -1,3 +1,6 @@
+import Footer from "@/widgets/footer/Footer";
+import Header from "@/widgets/header/Header";
+
 interface Props {
   children: React.ReactNode;
 }
@@ -5,7 +8,9 @@ interface Props {
 export default function PublicLayout({ children }: Props) {
   return (
     <>
-      <main>{children}</main>
+      <Header />
+      <main className="min-h-screen">{children}</main>
+      <Footer />
     </>
   );
 }
