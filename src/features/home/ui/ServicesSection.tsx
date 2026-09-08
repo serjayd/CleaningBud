@@ -1,35 +1,9 @@
 import Container from "@/components/shared/Container";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
+import { SERVICES_DATA } from "@/constants/services.data";
 import Image from "next/image";
 import Link from "next/link";
-
-const SERVICES_DATA = [
-  {
-    image: "/service1.png",
-    label: "Regular Cleaning",
-    description: "Keep your home fresh and clean, week after week.",
-    price: "£54",
-  },
-  {
-    image: "/service2.png",
-    label: "Deep Cleaning",
-    description: "A thorough clean for a healthier home.",
-    price: "£199",
-  },
-  {
-    image: "/service3.png",
-    label: "Window Cleaning",
-    description: "Crystal clear windows, inside and out.",
-    price: "£45",
-  },
-  {
-    image: "/service4.png",
-    label: "End of Tenancy",
-    description: "Get your deposit back with ease.",
-    price: "£249",
-  },
-];
 
 export default function ServicesSection() {
   return (
@@ -43,7 +17,7 @@ export default function ServicesSection() {
           />
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-          {SERVICES_DATA.map((service) => (
+          {SERVICES_DATA.slice(0, 4).map((service) => (
             <div
               key={service.label}
               className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow duration-300 hover:shadow-lg"
@@ -72,7 +46,7 @@ export default function ServicesSection() {
                 <div className="mt-2 flex items-end justify-between gap-4">
                   <div>
                     <span className="text-xs text-muted-foreground">From</span>
-                    <p className="text-xl font-bold text-foreground">
+                    <p className="text-xl font-bold text-primary">
                       {service.price}
                     </p>
                   </div>

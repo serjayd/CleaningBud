@@ -9,7 +9,7 @@ export default function PublicLayout({ children }: Props) {
   return (
     <>
       <Header />
-      <main className="min-h-screen">{children}</main>
+      <main className="min-h-screen py-16">{children}</main>
       <Footer />
     </>
   );

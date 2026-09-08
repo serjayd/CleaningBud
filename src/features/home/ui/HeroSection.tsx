@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <div className="bg-linear-to-br from-[#E5EAF2] via-white to-[#EBF3FF] py-16">
+    <div className="bg-linear-to-br from-[#E5EAF2] via-white to-[#EBF3FF]">
       <Container>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <section>
@@ -44,7 +44,7 @@ export default function HeroSection() {
 
           <section className="relative">
             <Image
-              src="/hero-bg.png"
+              src="/hero-bg.jpg"
               alt="Professional home cleaning"
               width={1200}
               height={900}
