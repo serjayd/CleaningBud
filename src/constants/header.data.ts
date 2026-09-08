@@ -1,5 +1,9 @@
 export const HEADER_LINKS = [
   {
+    label: "Home",
+    href: "/",
+  },
+  {
     label: "Services",
     href: "/services",
   },
@@ -15,8 +19,8 @@ export const HEADER_LINKS = [
     label: "About",
     href: "/about",
   },
-  {
-    label: "Reviews",
-    href: "/reviews",
-  },
+  // {
+  //   label: "Reviews",
+  //   href: "/reviews",
+  // },
 ] as const;
