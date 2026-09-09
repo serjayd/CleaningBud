@@ -7,65 +7,62 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id            String    @id
-  name          String
-  email         String
-  emailVerified Boolean   @default(false)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  sessions      Session[]
-  accounts      Account[]
-
-  @@unique([email])
-  @@map("user")
+enum PropertyType {
+  HOUSE
+  FLAT
+  STUDIO
 }
 
-model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([token])
-  @@index([userId])
-  @@map("session")
+enum ServiceType {
+  REGULAR_CLEANING
+  DEEP_CLEANING
+  END_OF_TENANCY
+  WINDOW_CLEANING
+  HOME_AND_WINDOWS
 }
 
-model Account {
-  id                    String    @id
-  accountId             String
-  providerId            String
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
-
-  @@index([userId])
-  @@map("account")
+enum ExtraService {
+  OVEN_CLEANING
+  FRIDGE_CLEANING
+  INSIDE_CABINETS
+  INTERIOR_WINDOWS
+  EXTERIOR_WINDOWS
+  LAUNDRY
+  OTHER
 }
 
-model Verification {
-  id         String   @id
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+model Quote {
+  id String @id @default(cuid())
 
-  @@index([identifier])
-  @@map("verification")
+  // Property
+  postcode      String
+  propertyType  PropertyType @default(HOUSE)
+  bedrooms      Int @default(0)
+  bathrooms     Int @default(0)
+
+  // Cleaning
+  serviceType   ServiceType @default(REGULAR_CLEANING)
+  extras        ExtraService[]
+  cleaningDate  String
+  cleaningTime  String
+
+  // Customer
+  fullName      String
+  emailAddress  String
+  phoneNumber   String
+  propertyAddress String
+
+  // Additional information
+  notes         String?
+
+  // Metadata
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([emailAddress])
+  @@index([phoneNumber])
+  @@index([postcode])
+  @@index([cleaningDate])
+  @@index([serviceType])
+  @@map("quotes")
 }

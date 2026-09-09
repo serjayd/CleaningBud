@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "quotes" ALTER COLUMN "cleaningDate" SET DEFAULT CURRENT_TIMESTAMP;
